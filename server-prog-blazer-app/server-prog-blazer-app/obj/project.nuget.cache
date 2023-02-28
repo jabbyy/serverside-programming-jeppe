@@ -1,15 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "OH/IRDeEI47UMEi+/SMoxresFPQ9j7Av10oYzwZHFUu3tCKmwP8QmKT/y622WqhdsP3bzqq3LkOitfTl5RZAig==",
+  "dgSpecHash": "yCHE0Ufzj3dfRSywOgPt72Y2ryxBAkNcllLojUmRZ+8KzG77jHgvBfoD59uBCwONk+McvCiNpUKb19rNDzINxQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tec\\Documents\\sever-prog\\server-prog-blazer-app\\server-prog-blazer-app\\server-prog-blazer-app.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tec\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Tec\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\Tec\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Tec\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Tec\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.3\\microsoft.aspnetcore.cryptography.internal.7.0.3.nupkg.sha512",
     "C:\\Users\\Tec\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.3\\microsoft.aspnetcore.cryptography.keyderivation.7.0.3.nupkg.sha512",
-    "C:\\Users\\Tec\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\7.0.1\\microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.1.nupkg.sha512",
+    "C:\\Users\\Tec\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\7.0.3\\microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.3.nupkg.sha512",
     "C:\\Users\\Tec\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.3\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.3.nupkg.sha512",
     "C:\\Users\\Tec\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\7.0.3\\microsoft.aspnetcore.identity.ui.7.0.3.nupkg.sha512",
     "C:\\Users\\Tec\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.11\\microsoft.aspnetcore.razor.language.6.0.11.nupkg.sha512",

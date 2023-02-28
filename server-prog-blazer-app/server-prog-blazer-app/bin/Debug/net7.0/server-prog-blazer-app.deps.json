@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v7.0": {
       "server-prog-blazer-app/1.0.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "7.0.1",
+          "BCrypt.Net-Next": "4.0.3",
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "7.0.3",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.3",
           "Microsoft.AspNetCore.Identity.UI": "7.0.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.3",
@@ -53,6 +54,14 @@
           }
         }
       },
+      "BCrypt.Net-Next/4.0.3": {
+        "runtime": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
+          }
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "runtime": {
           "lib/net6.0/Humanizer.dll": {
@@ -80,14 +89,14 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/7.0.1": {
+      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/7.0.3": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "7.0.3"
         },
         "runtime": {
           "lib/net7.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll": {
-            "assemblyVersion": "7.0.1.0",
-            "fileVersion": "7.0.122.56809"
+            "assemblyVersion": "7.0.3.0",
+            "fileVersion": "7.0.323.8009"
           }
         }
       },
@@ -2399,6 +2408,13 @@
       "path": "azure.identity/1.6.0",
       "hashPath": "azure.identity.1.6.0.nupkg.sha512"
     },
+    "BCrypt.Net-Next/4.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
+      "path": "bcrypt.net-next/4.0.3",
+      "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
+    },
     "Humanizer.Core/2.14.1": {
       "type": "package",
       "serviceable": true,
@@ -2420,12 +2436,12 @@
       "path": "microsoft.aspnetcore.cryptography.keyderivation/7.0.3",
       "hashPath": "microsoft.aspnetcore.cryptography.keyderivation.7.0.3.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/7.0.1": {
+    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/7.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-G4wvQwzPZB7tjzBOFl/uqD8l8JeXezOgfu+JfwAvrmZY5DeC6wDV4Xm31tatHqJERpCZZxOUTdDDe4fa/Y/GeA==",
-      "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/7.0.1",
-      "hashPath": "microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.1.nupkg.sha512"
+      "sha512": "sha512-lI0iHMAme68hJwQ66u3gA8Ku/gm7glKOueD5iCet+XfTbtQ0lTI89UmPNS9lDC2RfY5FfujAf/Trx23hvry98Q==",
+      "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/7.0.3",
+      "hashPath": "microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.3.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore/7.0.3": {
       "type": "package",
