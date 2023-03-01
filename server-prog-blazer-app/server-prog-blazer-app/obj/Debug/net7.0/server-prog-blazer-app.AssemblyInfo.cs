@@ -11,6 +11,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-server_prog_blazer_app-f23c2d3a-4bae-48a9-b723-b8ae0e94c9f6")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("server-prog-blazer-app")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]

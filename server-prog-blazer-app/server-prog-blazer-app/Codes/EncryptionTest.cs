@@ -14,3 +14,4 @@ namespace server_prog_blazer_app.Codes
         public string UnProtect(string valueToDecrypt) => _dataProtection.Unprotect(valueToDecrypt);
     }
 }
+ 

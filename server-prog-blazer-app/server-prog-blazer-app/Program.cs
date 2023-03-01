@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using server_prog_blazer_app.Areas.Identity;
 using server_prog_blazer_app.Codes;
 using server_prog_blazer_app.Data;
+using server_prog_blazer_app.models;
+using server_prog_blazer_app.Repo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,13 +26,16 @@ builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuth
 
 builder.Services.AddDataProtection();
 builder.Services.AddSingleton<EncryptionTest>();
-builder.Services.AddAuthorization(options => // @attribute[Authroize(Policy = "RequireAuthUser")]
+builder.Services.AddScoped<TodoRepo>();
+builder.Services.AddScoped<Todo>();
+builder.Services.AddAuthorization(options => // @attribute [Authorize(Policy = "RequireAuthUser")]
 {
     options.AddPolicy("RequireAuthUser", policy =>
     {
         policy.RequireAuthenticatedUser();
     });
 });
+
 
 var app = builder.Build();
 

@@ -20,12 +20,20 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Jeppe/Documents/serverside-prog/server-prog-blazer-app/server-prog-blazer-app/Pages/AddItem.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkSXRlbS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Jeppe/Documents/serverside-prog/server-prog-blazer-app/server-prog-blazer-app/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Jeppe/Documents/serverside-prog/server-prog-blazer-app/server-prog-blazer-app/Shared/LoginDisplay.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeppe/Documents/serverside-prog/server-prog-blazer-app/server-prog-blazer-app/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Jeppe/Documents/serverside-prog/server-prog-blazer-app/server-prog-blazer-app/_Imports.razor]

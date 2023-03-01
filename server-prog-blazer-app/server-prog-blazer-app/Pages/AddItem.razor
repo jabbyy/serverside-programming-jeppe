@@ -1,0 +1,66 @@
+﻿@inject AuthenticationStateProvider GetAuthenticationStateAsync;
+@inject server_prog_blazer_app.Data.DatabaseContext _context;
+@inject server_prog_blazer_app.Codes.EncryptionTest _encryption;
+@page "/AddItem"
+@using server_prog_blazer_app.models;
+@attribute [Authorize(Policy = "RequireAuthUser")]
+
+<h3>AddItem</h3>
+<div class="row">
+    <div class="col-md-4">
+        <EditForm Model=@todo  OnValidSubmit="HandleValidSubmit">
+    <div class="form-group">
+        <label>Title</label>
+                <input type="text" name="TodoTitle" @bind="todo.TodoTitle" class="form-control" />
+    </div>    
+    <div class="form-group">
+        <label>Stack</label>
+                <input type="number" @bind="todo.StackSize" name="StackSize" class="form-control" />
+    </div>      
+    <div class="form-group">
+        <label>Price</label>
+                <input type="number" @bind="todo.Price" name="Price" class="form-control" />
+    </div> 
+    <button type="submit" class="btn btn-primary">Save Item</button>
+    <button type="reset" class="btn btn-danger">Clear All</button>
+</EditForm>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+</div>
+
+
+@code {
+
+    public string UserEmailId { get; set; }
+
+    private Todo todo = new Todo();
+
+    protected async override void OnInitialized()
+    {
+        var authstate = await GetAuthenticationStateAsync.GetAuthenticationStateAsync();
+        var user = authstate.User;
+        if(user != null)
+        {
+            UserEmailId = user.Identity.Name;
+        }
+    }
+
+    private async void HandleValidSubmit()
+    {
+        try
+        {
+            todo.UserEmailId = UserEmailId;
+            todo.TodoTitle = _encryption.Protect(todo.TodoTitle);
+            _context.Todos.Add(todo);
+            await _context.SaveChangesAsync();
+        }
+        catch
+        {
+            base.StateHasChanged();
+        }
+        todo = new Todo();
+        base.StateHasChanged();
+    }
+
+}

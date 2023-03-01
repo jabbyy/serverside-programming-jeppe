@@ -1,20 +1,56 @@
-﻿@using System.Security.Cryptography;
+﻿@using server_prog_blazer_app.models;
 @inject NavigationManager _navigationManager;
-@inject server_prog_blazer_app.Codes.EncryptionTest _encryptionTest;
+@inject Codes.EncryptionTest _encryption;
+@inject Repo.TodoRepo _context;
+@inject models.Todo _todo;
 @page "/"
 
 <PageTitle>Index</PageTitle>
 
 <h1>Hello, world!</h1>
 
-@code{
+<div class="row">
+    <div col-md-8>
+        <table class="table table-primary table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Stack Size</th>
+                    <th scope="col">Item Price</th>
+                    <th scope="col">Total Price</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in todoList)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.TodoTitle</td>
+                        <td>@item.StackSize</td>
+                        <td>@item.Price</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div>
+    </div>
+</div>
 
+
+
+@code{
+    public string UserEmailId = "";
+    public List<Todo> todoList;
 
     [CascadingParameter]
     private Task<AuthenticationState>? authenticationStateTask { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        todoList = new List<Todo>();
         var AuthState = await authenticationStateTask;
         var user = AuthState.User;
         if(user.Identity != null)
@@ -24,6 +60,20 @@
                 _navigationManager.NavigateTo("Identity/Account/Login");
             }
         }
+        UserEmailId = user.Identity.Name;
+        await GetData();
+    }
+
+    public async Task GetData()
+    {
+        List<Todo> ItemList = await _context.getAll(UserEmailId);
+        todoList = ItemList.Select(obj => new Todo
+        {
+            Id = obj.Id,
+            TodoTitle = _encryption.UnProtect(obj.TodoTitle),
+            StackSize = obj.StackSize,
+            Price = obj.Price
+        }).ToList();
     }
 }
 
