@@ -3,6 +3,7 @@
 @inject Codes.EncryptionTest _encryption;
 @inject Repo.TodoRepo _context;
 @inject models.Todo _todo;
+@inject Repo.HashRepo _hashContext;
 @page "/"
 
 <PageTitle>Index</PageTitle>
@@ -43,13 +44,20 @@
         </table>
     </div>
     <div class="col-md-4">
-        @if (VerifyData(oldHash(), HashedTodoListData(todoList)) != true)
+        @if(count == 0)
         {
-            <span class="d-flex flex-md-wrap alert alert-danger">There is an update to your TodoList. Please click on update to to verify.</span>
-            <button onclick="" class="btn btn-success">Update TodoData</button>
+            <span class="d-flex flex-md-wrap alert alert-success">
+                There is no data for your TodoList. Please click on the button to create data.
+            </span>
+
+            <button type="submit" @onclick='() => CreateData(newHash)' class="btn btn-success">Create Data</button>
         } else
         {
-            
+            @if (!isValid)
+            {
+                <span class="d-flex flex-md-wrap alert alert-danger">There is an update to your TodoList. Please click on update to to verify.</span>
+                <button  @onclick="UpdateData" class="btn btn-success">Update TodoData</button>
+            }
         }
     </div>
 </div>
@@ -60,6 +68,10 @@
     public string dato11 = "";
     public string UserEmailId = "";
     public List<Todo> todoList;
+    public int count{ get; set; }
+    public string newHash { get; set; }
+    public string oldHash { get; set; }
+    public bool isValid{ get; set; }
 
 
     [CascadingParameter]
@@ -78,7 +90,16 @@
             }
         }
         UserEmailId = user.Identity.Name;
+
+
         await GetData();
+
+        CheckForEmptyTable(UserEmailId);
+        Task.Run(() => OldHash());
+        newHash = HashedTodoListData(todoList);
+
+
+        isValid = VerifyData(oldHash, newHash);
     }
 
     public async Task GetData()
@@ -105,22 +126,50 @@
         return hashedData;
     }
 
-    public string oldHash()
+    public async Task OldHash()
     {
-        string _oldHash = "";
-        return _oldHash;
+        Hashed item = await _hashContext.GetHashed(UserEmailId);
+        oldHash = item.HashedData; 
     }
 
-    public bool VerifyData(string oldHash, string newHash)
-    {
-        bool isValid = BCrypt.Net.BCrypt.Verify(oldHash, newHash);
-        return isValid;
+    public bool VerifyData(string _oldHash, string _newHash)
+    { 
+        return BCrypt.Net.BCrypt.Verify(_oldHash, _newHash);
     }
 
-    public void UpdateData(string _data)
+    public async Task<Hashed> UpdateData()
     {
-         dato11 = new DateTime().ToString();
-     
+        Hashed item = new Hashed
+            {
+                UserEmailId = UserEmailId,
+                HashedData = newHash
+            };
+        _hashContext.Update(item);
+        return null;
+    }
+
+    public void CheckForEmptyTable(string userEmailId)
+    {
+        count = _hashContext.CheckifEmpty(userEmailId);
+    }
+
+    public async Task CreateData(string _data)
+    {
+        try
+        {
+            Hashed item = new Hashed()
+                {
+                    UserEmailId = UserEmailId,
+                    HashedData = _data,
+
+                };
+           await _hashContext.Create(item);
+        } 
+        catch (Exception ex)
+        {
+            string message = ex.Message;
+        }
+
     }
 }
 

@@ -26,16 +26,25 @@ namespace server_prog_blazer_app.Repo
         }
         public async Task<Todo> CreateItem(Todo todo)
         {
-            _context.Todos.Add(todo);
-            await _context.SaveChangesAsync();
-            return null;
+            try
+            {
+                _context.Todos.Add(todo);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                string messsage = ex.Message;
+            }
+
+
+            return todo;
         }
         public async Task<Todo> UpdateItem(int Id, Todo todo)
         {
             
             _context.Entry(todo).State = EntityState.Modified;
             await _context.SaveChangesAsync();  
-            return null;
+            return todo;
         }
     }
 }
