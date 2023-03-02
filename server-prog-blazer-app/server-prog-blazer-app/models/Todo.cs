@@ -8,6 +8,6 @@ namespace server_prog_blazer_app.models
         public string ?UserEmailId { get; set; }
         public string ?TodoTitle { get; set; }
         public int StackSize { get; set; }
-        public float Price { get; set; }
+        public int Price { get; set; }
     }
 }

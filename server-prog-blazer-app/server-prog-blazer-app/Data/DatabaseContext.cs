@@ -8,5 +8,6 @@ namespace server_prog_blazer_app.Data
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
         public DbSet<Todo> Todos { get; set; }
+        public DbSet<Hashed> hasheds { get; set; }
     }
 }

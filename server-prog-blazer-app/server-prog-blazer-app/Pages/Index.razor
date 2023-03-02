@@ -30,6 +30,13 @@
                         <td>@item.TodoTitle</td>
                         <td>@item.StackSize</td>
                         <td>@item.Price</td>
+                        <td>@TotalPrice(item.StackSize, item.Price) Kr.</td>
+                        <td>
+                            <div>
+                                <a href="" >Edit</a>
+                                <a href="" >Delete</a>
+                            </div>
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -74,6 +81,12 @@
             StackSize = obj.StackSize,
             Price = obj.Price
         }).ToList();
+    }
+
+    public int TotalPrice(int _stacksize, int _price)
+    {
+        int result = _stacksize * _price;
+        return result;
     }
 }
 

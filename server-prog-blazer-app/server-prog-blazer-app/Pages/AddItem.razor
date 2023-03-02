@@ -1,6 +1,7 @@
 ﻿@inject AuthenticationStateProvider GetAuthenticationStateAsync;
-@inject server_prog_blazer_app.Data.DatabaseContext _context;
+@inject server_prog_blazer_app.Repo.TodoRepo _context;
 @inject server_prog_blazer_app.Codes.EncryptionTest _encryption;
+
 @page "/AddItem"
 @using server_prog_blazer_app.models;
 @attribute [Authorize(Policy = "RequireAuthUser")]
@@ -52,15 +53,14 @@
         {
             todo.UserEmailId = UserEmailId;
             todo.TodoTitle = _encryption.Protect(todo.TodoTitle);
-            _context.Todos.Add(todo);
-            await _context.SaveChangesAsync();
+            _context.CreateItem(todo);
+
         }
         catch
         {
-            base.StateHasChanged();
+            throw;
         }
-        todo = new Todo();
-        base.StateHasChanged();
+
     }
 
 }

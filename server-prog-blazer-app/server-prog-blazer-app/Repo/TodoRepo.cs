@@ -15,5 +15,27 @@ namespace server_prog_blazer_app.Repo
             List<Todo> TodoList = await _context.Todos.Where(s => s.UserEmailId == UserId).ToListAsync();
             return TodoList;
         }
+        public async Task<Todo> GetSingle(int Id)
+        {
+            return await _context.Todos.FindAsync(Id);
+        }
+        public async Task<Todo> DeleteItem(int Id)
+        {
+            var item = _context.Todos.Find(Id);
+            if(item != null) {_context.Todos.Remove(item); await _context.SaveChangesAsync();} return item;
+        }
+        public async Task<Todo> CreateItem(Todo todo)
+        {
+            _context.Todos.Add(todo);
+            await _context.SaveChangesAsync();
+            return null;
+        }
+        public async Task<Todo> UpdateItem(int Id, Todo todo)
+        {
+            
+            _context.Entry(todo).State = EntityState.Modified;
+            await _context.SaveChangesAsync();  
+            return null;
+        }
     }
 }
