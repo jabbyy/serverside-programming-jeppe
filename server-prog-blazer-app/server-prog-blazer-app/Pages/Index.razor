@@ -86,7 +86,7 @@
         {
             if (!user.Identity.IsAuthenticated)
             {
-                _navigationManager.NavigateTo("Identity/Account/Login");
+                _navigationManager.NavigateTo("Identity/Account/Login"); // Viser kun index til brugere. Navigere til login hvis ikke logget ind. 
             }
         }
         UserEmailId = user.Identity.Name;
@@ -95,14 +95,14 @@
         await GetData();
 
         CheckForEmptyTable(UserEmailId);
-        Task.Run(() => OldHash());
-        newHash = HashedTodoListData(todoList);
+        Task.Run(() => OldHash()); // Error if we dont this.
+        newHash = HashedTodoListData(todoList); // Gets new hash. 
 
 
         isValid = VerifyData(oldHash, newHash);
     }
 
-    public async Task GetData()
+    public async Task GetData() // Viser data på html table
     {
         List<Todo> ItemList = await _context.getAll(UserEmailId);
         todoList = ItemList.Select(obj => new Todo
@@ -114,13 +114,13 @@
         }).ToList();
     }
 
-    public int TotalPrice(int _stacksize, int _price)
+    public int TotalPrice(int _stacksize, int _price) // Udregner total pris af det item. 
     {
         int result = _stacksize * _price;
         return result;
     }
 
-    public string HashedTodoListData(List<Todo> _todo)
+    public string HashedTodoListData(List<Todo> _todo) // Actual hashing the TodoList.
     {
         string hashedData = BCrypt.Net.BCrypt.HashPassword(string.Join(",", _todo));
         return hashedData;
@@ -130,12 +130,12 @@
     {
         Hashed item = await _hashContext.GetHashed(UserEmailId);
         oldHash = item.HashedData; 
-    }
+    } // gets the old hash
 
     public bool VerifyData(string _oldHash, string _newHash)
     { 
         return BCrypt.Net.BCrypt.Verify(_oldHash, _newHash);
-    }
+    } // Compare the new hash and old hash to see if they are the same. 
 
     public async Task<Hashed> UpdateData()
     {
@@ -146,14 +146,14 @@
             };
         _hashContext.Update(item);
         return null;
-    }
+    }// Update doesnt work. 
 
-    public void CheckForEmptyTable(string userEmailId)
+    public void CheckForEmptyTable(string userEmailId) // check hvis der er en instanser inde på hashed tabel med det ID. 
     {
         count = _hashContext.CheckifEmpty(userEmailId);
     }
 
-    public async Task CreateData(string _data)
+    public async Task CreateData(string _data) // Insert data into hashed table
     {
         try
         {
@@ -170,7 +170,7 @@
             string message = ex.Message;
         }
 
-    }
+    } 
 }
 
 
