@@ -35,6 +35,9 @@ namespace server_prog_blazer_app.Migrations
                     b.Property<string>("UserEmailId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("dato")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("hasheds");

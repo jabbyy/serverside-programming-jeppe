@@ -42,15 +42,25 @@
             </tbody>
         </table>
     </div>
-    <div>
+    <div class="col-md-4">
+        @if (VerifyData(oldHash(), HashedTodoListData(todoList)) != true)
+        {
+            <span class="d-flex flex-md-wrap alert alert-danger">There is an update to your TodoList. Please click on update to to verify.</span>
+            <button onclick="" class="btn btn-success">Update TodoData</button>
+        } else
+        {
+            
+        }
     </div>
 </div>
 
 
 
 @code{
+    public string dato11 = "";
     public string UserEmailId = "";
     public List<Todo> todoList;
+
 
     [CascadingParameter]
     private Task<AuthenticationState>? authenticationStateTask { get; set; }
@@ -87,6 +97,30 @@
     {
         int result = _stacksize * _price;
         return result;
+    }
+
+    public string HashedTodoListData(List<Todo> _todo)
+    {
+        string hashedData = BCrypt.Net.BCrypt.HashPassword(string.Join(",", _todo));
+        return hashedData;
+    }
+
+    public string oldHash()
+    {
+        string _oldHash = "";
+        return _oldHash;
+    }
+
+    public bool VerifyData(string oldHash, string newHash)
+    {
+        bool isValid = BCrypt.Net.BCrypt.Verify(oldHash, newHash);
+        return isValid;
+    }
+
+    public void UpdateData(string _data)
+    {
+         dato11 = new DateTime().ToString();
+     
     }
 }
 

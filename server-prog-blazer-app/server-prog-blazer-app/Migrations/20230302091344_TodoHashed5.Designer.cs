@@ -11,8 +11,8 @@ using server_prog_blazer_app.Data;
 namespace server_prog_blazer_app.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230301101746_Todo1")]
-    partial class Todo1
+    [Migration("20230302091344_TodoHashed5")]
+    partial class TodoHashed5
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,28 @@ namespace server_prog_blazer_app.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("server_prog_blazer_app.models.Hashed", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("HashedData")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserEmailId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("dato")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("hasheds");
+                });
+
             modelBuilder.Entity("server_prog_blazer_app.models.Todo", b =>
                 {
                     b.Property<int>("Id")
@@ -31,6 +53,9 @@ namespace server_prog_blazer_app.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.Property<int>("StackSize")
                         .HasColumnType("int");
@@ -40,9 +65,6 @@ namespace server_prog_blazer_app.Migrations
 
                     b.Property<string>("UserEmailId")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("price")
-                        .HasColumnType("real");
 
                     b.HasKey("Id");
 

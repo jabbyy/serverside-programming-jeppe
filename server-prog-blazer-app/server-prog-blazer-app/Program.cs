@@ -28,6 +28,7 @@ builder.Services.AddDataProtection();
 builder.Services.AddSingleton<EncryptionTest>();
 builder.Services.AddScoped<TodoRepo>();
 builder.Services.AddScoped<Todo>();
+builder.Services.AddScoped<HashRepo>();
 builder.Services.AddAuthorization(options => // @attribute [Authorize(Policy = "RequireAuthUser")]
 {
     options.AddPolicy("RequireAuthUser", policy =>
